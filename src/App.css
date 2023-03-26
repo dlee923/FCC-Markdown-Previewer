@@ -2,8 +2,12 @@
   --background-color: #87b5b5;
   --header-color: #4aa3a3;
   --card-color: #c0d8d8;
+  --editor-margin-top: 20px;
   --editor-height: 35vh;
-  --previewer-height: 100vh
+  --editor-max-height: infinite;
+  --previewer-height: 30vh;
+  --previewer-max-height: infinite;
+  --previewer-margin-bottom: 20px;
 }
 
 * {
@@ -24,6 +28,7 @@ button:hover {
 .App {
   text-align: center;
   height: 100%;
+  min-height: 100vh;
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;  
@@ -32,17 +37,20 @@ button:hover {
 }
 
 .editor {
-  margin-top: 20px;
+  margin-top: var(--editor-margin-top);
+  max-height: var(--editor-max-height);
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
-  width: 45vw;
+  width: 45vw;  
+  overflow: auto;
 }
 
 .previewer {
-  margin: 20px 0;
+  margin: 20px 0 var(--previewer-margin-bottom) 0;
+  max-height: var(--previewer-max-height);
+  overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.75);
   width: 60vw;
-  height: 100vh;
-  min-height: 1000px;
+  min-height: var(--previewer-height);
   background-color: var(--card-color);
 }
 
@@ -79,11 +87,62 @@ button:hover {
   border-top: 0.25px solid black;
   margin-bottom: -5px;
   resize: vertical;
-  overflow: auto;
   z-index: -1;
+  padding: 5px;
 }
 
 .previewer-output {
   text-align: left;
-  padding: 10px;;
+  padding: 10px;
+  min-height: var(--previewer-height);
+}
+
+.previewer-output * {
+  margin-bottom: 20px;
+}
+
+.previewer-output li {
+  margin-bottom: 0px;
+}
+
+.previewer-output code {
+  background-color: white;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.previewer-output pre {
+  background-color: white;  
+  padding: 5px;
+}
+
+.previewer-output h1 {
+  border-bottom: 2px solid black;
+}
+
+.previewer-output h2 {
+  border-bottom: 1px solid black;
+}
+
+.previewer-output blockquote {
+  margin-left: 20px;
+  border-left: 3px solid black;
+  padding-left: 5px;
+}
+
+.previewer-output table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  
+}
+
+.previewer-output table *{
+  border: 1.5px solid black;
+  padding: 2px 5px;
+}
+
+.previewer-output img {
+  width: 100%;
+  padding: 0 50px;
+  margin: 0;
 }
